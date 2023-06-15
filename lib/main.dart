@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx_example/Count%20Example/count_example.dart';
+import 'package:mobx_example/Dice%20Example/dice_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/MyHomePage': (context) => MyHomePage(),
         '/CountExample': (context) => CountExample(),
+        '/DiceExample': (context) => DiceExample(),
       },
     );
   }
@@ -47,6 +49,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             CustomElevatedButton(
                 pathName: '/CountExample', text: 'Count Example'),
+            CustomElevatedButton(
+                pathName: '/DiceExample', text: 'Dice Example'),
           ],
         ),
       ),
@@ -66,11 +70,14 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        Navigator.pushNamed(context,pathName);
-      },
-      child: Text(text,style: TextStyle(fontSize: 20)),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ElevatedButton(
+        onPressed: () {
+          Navigator.pushNamed(context,pathName);
+        },
+        child: Text(text,style: TextStyle(fontSize: 20)),
+      ),
     );
   }
 }

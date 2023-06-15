@@ -22,27 +22,87 @@ class _CountExampleState extends State<CountExample> {
         centerTitle: true,
       ),
       body: Center(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "You have pushed the button : ",
-              style: TextStyle(fontSize: 20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Increment",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Observer(
+                    builder: (_) {
+                      return Text(
+                        '${counter.count1}',
+                        style: TextStyle(fontSize: 25),
+                      );
+                    },
+                  )
+                ],
+              ),
             ),
-            Observer(
-              builder: (_) {
-                return Text(
-                  '${counter.count}',
-                  style: TextStyle(fontSize: 25),
-                );
-              },
-            )
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Decrement",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Observer(
+                    builder: (_) {
+                      return Text(
+                        '${counter.count2}',
+                        style: TextStyle(fontSize: 25),
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Total",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  Observer(
+                    builder: (_) {
+                      return Text(
+                        '${counter.total}',
+                        style: TextStyle(fontSize: 25),
+                      );
+                    },
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: counter.increment,
-        child: Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            key: UniqueKey(),
+            onPressed: counter.increment,
+            child: Icon(Icons.add),
+          ),
+          SizedBox(width: 25),
+          FloatingActionButton(
+            key: UniqueKey(),
+            onPressed: counter.decrement,
+            child: Icon(Icons.remove),
+          ),
+        ],
       ),
     );
   }
