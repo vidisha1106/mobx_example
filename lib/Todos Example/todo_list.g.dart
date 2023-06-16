@@ -24,27 +24,46 @@ mixin _$TodoList on _TodoList, Store {
     });
   }
 
-  late final _$visibilityAtom =
-      Atom(name: '_TodoList.visibility', context: context);
+  late final _$_TodoListActionController =
+      ActionController(name: '_TodoList', context: context);
 
   @override
-  Visibility get visibility {
-    _$visibilityAtom.reportRead();
-    return super.visibility;
+  void addTodo(String title) {
+    final _$actionInfo =
+        _$_TodoListActionController.startAction(name: '_TodoList.addTodo');
+    try {
+      return super.addTodo(title);
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
-  set visibility(Visibility value) {
-    _$visibilityAtom.reportWrite(value, super.visibility, () {
-      super.visibility = value;
-    });
+  void removeTodo(Todos todo) {
+    final _$actionInfo =
+        _$_TodoListActionController.startAction(name: '_TodoList.removeTodo');
+    try {
+      return super.removeTodo(todo);
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void todoCompletion(int index, bool value) {
+    final _$actionInfo = _$_TodoListActionController.startAction(
+        name: '_TodoList.todoCompletion');
+    try {
+      return super.todoCompletion(index, value);
+    } finally {
+      _$_TodoListActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
     return '''
-todos: ${todos},
-visibility: ${visibility}
+todos: ${todos}
     ''';
   }
 }

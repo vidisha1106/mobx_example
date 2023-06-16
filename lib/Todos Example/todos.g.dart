@@ -9,42 +9,41 @@ part of 'todos.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$Todos on _Todos, Store {
-  late final _$descriptionAtom =
-      Atom(name: '_Todos.description', context: context);
+  late final _$titleAtom = Atom(name: '_Todos.title', context: context);
 
   @override
-  String get description {
-    _$descriptionAtom.reportRead();
-    return super.description;
+  String get title {
+    _$titleAtom.reportRead();
+    return super.title;
   }
 
   @override
-  set description(String value) {
-    _$descriptionAtom.reportWrite(value, super.description, () {
-      super.description = value;
+  set title(String value) {
+    _$titleAtom.reportWrite(value, super.title, () {
+      super.title = value;
     });
   }
 
-  late final _$doneAtom = Atom(name: '_Todos.done', context: context);
+  late final _$completedAtom = Atom(name: '_Todos.completed', context: context);
 
   @override
-  bool get done {
-    _$doneAtom.reportRead();
-    return super.done;
+  bool get completed {
+    _$completedAtom.reportRead();
+    return super.completed;
   }
 
   @override
-  set done(bool value) {
-    _$doneAtom.reportWrite(value, super.done, () {
-      super.done = value;
+  set completed(bool value) {
+    _$completedAtom.reportWrite(value, super.completed, () {
+      super.completed = value;
     });
   }
 
   @override
   String toString() {
     return '''
-description: ${description},
-done: ${done}
+title: ${title},
+completed: ${completed}
     ''';
   }
 }

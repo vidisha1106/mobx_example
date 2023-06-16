@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_example/Dice%20Example/dice.dart';
-import 'package:mobx_example/images/all_images.dart';
 
 class DiceExample extends StatelessWidget {
   DiceExample({Key? key}) : super(key: key);

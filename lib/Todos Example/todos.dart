@@ -4,14 +4,12 @@ part 'todos.g.dart';
 
 class Todos = _Todos with _$Todos;
 
-abstract class _Todos with Store
-{
-
-  _Todos(this.description);
+abstract class _Todos with Store {
+  _Todos(this.title, this.completed);
 
   @observable
-  String description='';
+  String title;
 
   @observable
-  bool done=false;
+  bool completed;
 }
