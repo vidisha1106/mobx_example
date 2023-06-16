@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_example/Dice%20Example/dice.dart';
 import 'package:mobx_example/images/all_images.dart';
 
 class DiceExample extends StatelessWidget {
-   DiceExample({Key? key}) : super(key: key);
+  DiceExample({Key? key}) : super(key: key);
 
-  final Dice dice=Dice();
+  final Dice dice = Dice();
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +29,45 @@ class DiceExample extends StatelessWidget {
             ),
             Row(
               children: [
-                TextButton(onPressed: () { dice.roll(); }, child: Image.asset(Images.dice2),),
-                //TextButton(onPressed: () { dice.roll(); }, child: Image.asset('assets/images/dice${dice.left}.jpeg'),),
-
-                TextButton(onPressed: () {  }, child: Image.asset(Images.dice2),),
+                Expanded(
+                  flex: 1,
+                  child: TextButton(
+                    onPressed: dice.roll,
+                    child: Observer(
+                      builder: (_) {
+                        return Image.asset(
+                            'assets/images/dice${dice.left}.png');
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: TextButton(
+                    onPressed: dice.roll,
+                    child: Observer(
+                        builder: (_) {
+                          return Image.asset('assets/images/dice${dice.right}.png');
+                        },),
+                  ),
+                ),
               ],
             ),
-            SizedBox(height: 50,),
-            Text("Total",style: TextStyle(fontSize: 25),),
-            Text("4",style: TextStyle(fontSize: 50),)
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+              "Total",
+              style: TextStyle(fontSize: 25),
+            ),
+            Observer(
+              builder: (_) {
+                return  Text(
+                  dice.total.toString(),
+                  style: TextStyle(fontSize: 50),
+                );
+              },
+            )
           ],
         ),
       ),

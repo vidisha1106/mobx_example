@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx_example/Count%20Example/count_example.dart';
 import 'package:mobx_example/Dice%20Example/dice_example.dart';
+import 'package:mobx_example/Todos%20Example/todos_example.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/MyHomePage': (context) => MyHomePage(),
         '/CountExample': (context) => CountExample(),
         '/DiceExample': (context) => DiceExample(),
+        '/TodosExample': (context) => TodosExample(),
       },
     );
   }
@@ -51,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 pathName: '/CountExample', text: 'Count Example'),
             CustomElevatedButton(
                 pathName: '/DiceExample', text: 'Dice Example'),
+            CustomElevatedButton(
+                pathName: '/TodosExample', text: 'Todos Example'),
           ],
         ),
       ),
