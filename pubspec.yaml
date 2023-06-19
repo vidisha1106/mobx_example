@@ -39,6 +39,7 @@ dependencies:
   flutter_mobx:
   provider:
   connectivity_plus: ^4.0.1
+  github: ^9.14.0
 
 dev_dependencies:
   flutter_test:

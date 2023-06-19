@@ -7,6 +7,8 @@ import 'package:mobx_example/Count%20Example/counter.dart';
 import 'package:mobx_example/Dice%20Example/dice.dart';
 import 'package:mobx_example/Dice%20Example/dice_example.dart';
 import 'package:mobx_example/Form%20Example/form_example.dart';
+import 'package:mobx_example/GitHub%20Repos/github_repos_example.dart';
+import 'package:mobx_example/GitHub%20Repos/github_repos_store.dart';
 import 'package:mobx_example/Todos%20Example/todo_list.dart';
 import 'package:mobx_example/Todos%20Example/todos_example.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +35,10 @@ class MyApp extends StatelessWidget {
         },),
         Provider<ConnectivityStore>(create: (_) {
           return ConnectivityStore();
-        },)
+        },),
+        Provider<GitHubRepos>(create: (_) {
+          return GitHubRepos();
+        },),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -49,6 +54,7 @@ class MyApp extends StatelessWidget {
           '/TodosExample': (context) => TodosExample(),
           '/FormExample': (context) => FormExample(),
           '/ConnectivityExample': (context) => ConnectivityExample(),
+          '/GitHubReposExample': (context) => GitHubReposExample(),
         },
       ),
     );
@@ -88,6 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 pathName: '/FormExample', text: 'Form Example'),
             CustomElevatedButton(
                 pathName: '/ConnectivityExample', text: 'Connectivity Example'),
+            CustomElevatedButton(
+                pathName: '/GitHubReposExample', text: 'GitHub Repos Example'),
           ],
         ),
       ),
