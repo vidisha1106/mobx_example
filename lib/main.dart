@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx_example/Connectivity%20Example/connectivity_example.dart';
+import 'package:mobx_example/Connectivity%20Example/connectivity_store.dart';
 import 'package:mobx_example/Count%20Example/count_example.dart';
+import 'package:mobx_example/Count%20Example/counter.dart';
+import 'package:mobx_example/Dice%20Example/dice.dart';
 import 'package:mobx_example/Dice%20Example/dice_example.dart';
+import 'package:mobx_example/Form%20Example/form_example.dart';
+import 'package:mobx_example/Todos%20Example/todo_list.dart';
 import 'package:mobx_example/Todos%20Example/todos_example.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,19 +20,37 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        Provider<Counter>(create: (_) {
+          return Counter();
+        },),
+        Provider<Dice>(create: (_) {
+          return Dice();
+        },),
+        Provider<TodoList>(create: (_) {
+          return TodoList();
+        },),
+        Provider<ConnectivityStore>(create: (_) {
+          return ConnectivityStore();
+        },)
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        initialRoute: '/MyHomePage',
+        routes: {
+          '/MyHomePage': (context) => MyHomePage(),
+          '/CountExample': (context) => CountExample(),
+          '/DiceExample': (context) => DiceExample(),
+          '/TodosExample': (context) => TodosExample(),
+          '/FormExample': (context) => FormExample(),
+          '/ConnectivityExample': (context) => ConnectivityExample(),
+        },
       ),
-      initialRoute: '/MyHomePage',
-      routes: {
-        '/MyHomePage': (context) => MyHomePage(),
-        '/CountExample': (context) => CountExample(),
-        '/DiceExample': (context) => DiceExample(),
-        '/TodosExample': (context) => TodosExample(),
-      },
     );
   }
 }
@@ -41,7 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme
+            .of(context)
+            .colorScheme
+            .inversePrimary,
         title: Text("MobX", style: TextStyle(fontSize: 25)),
         centerTitle: true,
       ),
@@ -55,6 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 pathName: '/DiceExample', text: 'Dice Example'),
             CustomElevatedButton(
                 pathName: '/TodosExample', text: 'Todos Example'),
+            CustomElevatedButton(
+                pathName: '/FormExample', text: 'Form Example'),
+            CustomElevatedButton(
+                pathName: '/ConnectivityExample', text: 'Connectivity Example'),
           ],
         ),
       ),
@@ -78,9 +111,9 @@ class CustomElevatedButton extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         onPressed: () {
-          Navigator.pushNamed(context,pathName);
+          Navigator.pushNamed(context, pathName);
         },
-        child: Text(text,style: TextStyle(fontSize: 20)),
+        child: Text(text, style: TextStyle(fontSize: 20)),
       ),
     );
   }

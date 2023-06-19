@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_example/Dice%20Example/dice.dart';
+import 'package:provider/provider.dart';
 
 class DiceExample extends StatelessWidget {
   DiceExample({Key? key}) : super(key: key);
 
-  final Dice dice = Dice();
+  // final Dice dice = Dice();
 
   @override
   Widget build(BuildContext context) {
+    final dice=Provider.of<Dice>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,

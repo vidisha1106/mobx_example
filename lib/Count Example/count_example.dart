@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_example/Count%20Example/counter.dart';
+import 'package:provider/provider.dart';
 
 class CountExample extends StatefulWidget {
   const CountExample({Key? key}) : super(key: key);
@@ -11,10 +12,11 @@ class CountExample extends StatefulWidget {
 
 class _CountExampleState extends State<CountExample> {
 
-  final Counter counter = Counter();
+  //final Counter counter = Counter();
 
   @override
   Widget build(BuildContext context) {
+    final counter=Provider.of<Counter>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
