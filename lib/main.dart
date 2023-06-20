@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx_example/API%20Using%20MobX/api_using_mobx_example.dart';
 import 'package:mobx_example/Connectivity%20Example/connectivity_example.dart';
 import 'package:mobx_example/Connectivity%20Example/connectivity_store.dart';
 import 'package:mobx_example/Count%20Example/count_example.dart';
@@ -8,8 +8,6 @@ import 'package:mobx_example/Dice%20Example/dice.dart';
 import 'package:mobx_example/Dice%20Example/dice_example.dart';
 import 'package:mobx_example/Form%20Example/form_example.dart';
 import 'package:mobx_example/GitHub%20Repos/github_repos_example.dart';
-import 'package:mobx_example/GitHub%20Repos/github_repos_store.dart';
-import 'package:mobx_example/Hacker%20News/api_using_mobx_example.dart';
 import 'package:mobx_example/Todos%20Example/todo_list.dart';
 import 'package:mobx_example/Todos%20Example/todos_example.dart';
 import 'package:provider/provider.dart';
@@ -53,6 +51,7 @@ class MyApp extends StatelessWidget {
           '/FormExample': (context) => FormExample(),
           '/ConnectivityExample': (context) => ConnectivityExample(),
           '/GitHubReposExample': (context) => GitHubReposExample(),
+          '/HackerNewsExample': (context) => HackerNewsExample(),
         },
       ),
     );

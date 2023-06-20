@@ -13,13 +13,13 @@ mixin _$ApiStore on _ApiStore, Store {
       Atom(name: '_ApiStore.postListFuture', context: context);
 
   @override
-  ObservableFuture<List<Post>> get postListFuture {
+  ObservableFuture<List<Post>>? get postListFuture {
     _$postListFutureAtom.reportRead();
     return super.postListFuture;
   }
 
   @override
-  set postListFuture(ObservableFuture<List<Post>> value) {
+  set postListFuture(ObservableFuture<List<Post>>? value) {
     _$postListFutureAtom.reportWrite(value, super.postListFuture, () {
       super.postListFuture = value;
     });
