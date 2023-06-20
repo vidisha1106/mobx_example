@@ -16,19 +16,20 @@ mixin _$GitHubRepos on _GitHubReposStore, Store {
           name: '_GitHubReposStore.hasData'))
       .value;
 
-  late final _$fetchReposFutureAtom =
-      Atom(name: '_GitHubReposStore.fetchReposFuture', context: context);
+  late final _$futureFetchReposListAtom =
+      Atom(name: '_GitHubReposStore.futureFetchReposList', context: context);
 
   @override
-  ObservableFuture<List<Repository>> get fetchReposFuture {
-    _$fetchReposFutureAtom.reportRead();
-    return super.fetchReposFuture;
+  ObservableFuture<List<Repository>> get futureFetchReposList {
+    _$futureFetchReposListAtom.reportRead();
+    return super.futureFetchReposList;
   }
 
   @override
-  set fetchReposFuture(ObservableFuture<List<Repository>> value) {
-    _$fetchReposFutureAtom.reportWrite(value, super.fetchReposFuture, () {
-      super.fetchReposFuture = value;
+  set futureFetchReposList(ObservableFuture<List<Repository>> value) {
+    _$futureFetchReposListAtom.reportWrite(value, super.futureFetchReposList,
+        () {
+      super.futureFetchReposList = value;
     });
   }
 
@@ -73,7 +74,7 @@ mixin _$GitHubRepos on _GitHubReposStore, Store {
   @override
   String toString() {
     return '''
-fetchReposFuture: ${fetchReposFuture},
+futureFetchReposList: ${futureFetchReposList},
 user: ${user},
 hasData: ${hasData}
     ''';

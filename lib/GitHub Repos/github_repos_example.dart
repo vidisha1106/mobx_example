@@ -2,23 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
 import 'package:mobx_example/GitHub%20Repos/github_repos_store.dart';
-import 'package:provider/provider.dart';
 
 class GitHubReposExample extends StatelessWidget {
   GitHubReposExample({Key? key}) : super(key: key);
+
+  final GitHubRepos store = GitHubRepos();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("GitHub Repos Example", style: TextStyle(fontSize: 25)),
+        title: const Text(
+          "GitHub Repos Example",
+          style: TextStyle(fontSize: 25),
+        ),
       ),
       body: Column(
         children: [
-          UserInput(),
-          ShowError(),
-          LoadingIndicator(),
+          UserInput(store),
+          ShowError(store),
+          LoadingIndicator(store),
+          RepositoryListView(store)
         ],
       ),
     );
@@ -26,18 +31,25 @@ class GitHubReposExample extends StatelessWidget {
 }
 
 class UserInput extends StatelessWidget {
-  const UserInput({Key? key}) : super(key: key);
+  UserInput(this.store, {Key? key}) : super(key: key);
+
+  final GitHubRepos store;
+  TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final gitHUbReposStore = Provider.of<GitHubRepos>(context);
     return Padding(
       padding: const EdgeInsets.all(25.0),
       child: TextField(
         autofocus: true,
+        controller: textEditingController,
+        style: TextStyle(
+          fontSize: 20,
+        ),
         onSubmitted: (value) {
-          gitHUbReposStore.setUser(value);
-          gitHUbReposStore.fetchRepos();
+            store.setUser(value);
+            store.fetchRepos();
+            textEditingController.clear();
         },
         decoration: InputDecoration(
           suffixIcon: Icon(Icons.search),
@@ -51,32 +63,114 @@ class UserInput extends StatelessWidget {
 }
 
 class ShowError extends StatelessWidget {
-  const ShowError({Key? key}) : super(key: key);
+  const ShowError(this.store, {Key? key}) : super(key: key);
+
+  final GitHubRepos store;
+
+  @override
+  Widget build(BuildContext context) => Observer(
+      builder: (_) => store.futureFetchReposList.status == FutureStatus.rejected
+          ? Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.warning,
+                    color: Colors.deepOrange,size: 20,
+                  ),
+                  Container(
+                    width: 8,
+                  ),
+                  const Text(
+                    'Failed to fetch repos for',
+                    style: TextStyle(color: Colors.deepOrange,fontSize: 20),
+                  ),
+
+                ],
+              ),
+              Text(
+                store.user,
+                style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.deepOrange, fontWeight: FontWeight.bold),
+              ),
+            ],
+          )
+          : Container());
+}
+
+class LoadingIndicator extends StatelessWidget {
+  const LoadingIndicator(this.store, {Key? key}) : super(key: key);
+  final GitHubRepos store;
 
   @override
   Widget build(BuildContext context) {
-    final gitHubReposStore = Provider.of<GitHubRepos>(context);
     return Observer(
-      builder: (_) =>
-          gitHubReposStore.fetchReposFuture.status == FutureStatus.rejected ?
-      Row(
-        children: [
-          Icon(Icons.error,color: Colors.red,size: 15),
-          Text("Failed to fetch Repos for",style: TextStyle(color: Colors.red,fontSize: 10),),
-          Text("${gitHubReposStore.user}")
-        ],
-      ) : Container()
+      builder: (_) => store.futureFetchReposList.status == FutureStatus.pending
+          ? const LinearProgressIndicator()
+          : Container(),
     );
   }
 }
 
-class LoadingIndicator extends StatelessWidget {
-  const LoadingIndicator({Key? key}) : super(key: key);
+class RepositoryListView extends StatelessWidget {
+  const RepositoryListView(this.store, {Key? key}) : super(key: key);
+  final GitHubRepos store;
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
-    },);
+    return Expanded(
+      child: Observer(
+        builder: (_) {
+          if (!store.hasData) {
+            return Container();
+          }
+          if (store.repositories.isEmpty) {
+            return Column(
+              children: [
+                Text(
+                  "We could not find any repos for the user : ",
+                  style: TextStyle(
+                    fontSize: 20,
+                      fontWeight: FontWeight.w500, color: Colors.grey),
+                ),
+                Text(
+                  store.user,
+                  style: TextStyle(
+                    fontSize: 20,
+                      color: Colors.grey, fontWeight: FontWeight.bold),
+                ),
+              ],
+            );
+          }
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: store.repositories.length,
+            itemBuilder: (BuildContext context, int index) {
+              final repo = store.repositories[index];
+              return ListTile(
+                title: Row(
+                  children: [
+                    Text(
+                      repo.name,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.purple,
+                          fontSize: 15,
+                          overflow: TextOverflow.fade),
+                    ),
+                    Text('(${repo.stargazersCount} ⭐️) '),
+                  ],
+                ),
+                subtitle: Text(repo.description,
+                    overflow: TextOverflow.fade,
+                    style: TextStyle(fontSize: 10, color: Colors.purple)),
+              );
+            },
+          );
+        },
+      ),
+    );
   }
 }
-

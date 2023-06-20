@@ -31,7 +31,7 @@ class ConnectivityExample extends StatelessWidget {
                   Text("Connectivity Example", style: TextStyle(fontSize: 25)),
             ),
             body: Padding(
-              padding: const EdgeInsets.all(10.0),
+               padding: const EdgeInsets.all(10.0),
               child: Text(
                   'Turn your connection on/off for approximately 3 seconds to see the app respond to changes in your connection status.',
                   style: TextStyle(fontSize: 20)),

@@ -9,6 +9,7 @@ import 'package:mobx_example/Dice%20Example/dice_example.dart';
 import 'package:mobx_example/Form%20Example/form_example.dart';
 import 'package:mobx_example/GitHub%20Repos/github_repos_example.dart';
 import 'package:mobx_example/GitHub%20Repos/github_repos_store.dart';
+import 'package:mobx_example/Hacker%20News/api_using_mobx_example.dart';
 import 'package:mobx_example/Todos%20Example/todo_list.dart';
 import 'package:mobx_example/Todos%20Example/todos_example.dart';
 import 'package:provider/provider.dart';
@@ -35,9 +36,6 @@ class MyApp extends StatelessWidget {
         },),
         Provider<ConnectivityStore>(create: (_) {
           return ConnectivityStore();
-        },),
-        Provider<GitHubRepos>(create: (_) {
-          return GitHubRepos();
         },),
       ],
       child: MaterialApp(
@@ -96,6 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 pathName: '/ConnectivityExample', text: 'Connectivity Example'),
             CustomElevatedButton(
                 pathName: '/GitHubReposExample', text: 'GitHub Repos Example'),
+            CustomElevatedButton(
+                pathName: '/HackerNewsExample', text: 'Hacker News Example'),
           ],
         ),
       ),
