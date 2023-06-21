@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mobx/mobx.dart';
 import 'package:mobx_example/Count%20Example/counter.dart';
 import 'package:provider/provider.dart';
 
@@ -11,9 +12,7 @@ class CountExample extends StatefulWidget {
 }
 
 class _CountExampleState extends State<CountExample> {
-
   //final Counter counter = Counter();
-
   @override
   Widget build(BuildContext context) {
     final counter=Provider.of<Counter>(context);
@@ -38,6 +37,7 @@ class _CountExampleState extends State<CountExample> {
                   ),
                   Observer(
                     builder: (_) {
+                      autorun((p0) => debugPrint("${counter.count1}"),);
                       return Text(
                         '${counter.count1}',
                         style: TextStyle(fontSize: 25),
@@ -95,6 +95,7 @@ class _CountExampleState extends State<CountExample> {
         children: [
           FloatingActionButton(
             key: UniqueKey(),
+            //onPressed: () => counter.count1++,
             onPressed: counter.increment,
             child: Icon(Icons.add),
           ),

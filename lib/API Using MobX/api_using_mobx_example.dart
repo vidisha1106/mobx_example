@@ -5,7 +5,6 @@ import 'package:mobx_example/API%20Using%20MobX/api_model.dart';
 import 'package:mobx_example/API%20Using%20MobX/api_store.dart';
 
 class HackerNewsExample extends StatelessWidget {
-
   ApiStore apiStore = ApiStore();
 
   HackerNewsExample() {
@@ -58,32 +57,29 @@ class HackerNewsExample extends StatelessWidget {
               final List<Post> posts = futureList!.result;
               print(posts);
               return RefreshIndicator(
+                  onRefresh: _refresh,
                   child: ListView.builder(
                     physics: AlwaysScrollableScrollPhysics(),
                     itemCount: posts.length,
                     itemBuilder: (context, index) {
                       final post = posts[index];
-                      return SingleChildScrollView(
-                        child: ExpansionTile(
-                          title: Text(
-                            post.title,
+                      return ListTile(
+                        title: Text(post.title,maxLines: 2,overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
-                          ),
-                          children: [
-                            Text(
-                              post.body,
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            )
-                          ],
-                        ),
-                      );
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.purple)),
+                        style: ListTileStyle.list,
+                        subtitle: Text(post.body,overflow: TextOverflow.ellipsis,maxLines: 3,
+                          style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                        ),),
+                        contentPadding: EdgeInsets.all(8),
+                        leading: CircleAvatar(child: Text("${post.id}",),
+                      ),);
                     },
-                  ),
-                  onRefresh: _refresh);
+                  ));
           }
         },
       ),

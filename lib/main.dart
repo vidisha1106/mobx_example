@@ -8,6 +8,8 @@ import 'package:mobx_example/Dice%20Example/dice.dart';
 import 'package:mobx_example/Dice%20Example/dice_example.dart';
 import 'package:mobx_example/Form%20Example/form_example.dart';
 import 'package:mobx_example/GitHub%20Repos/github_repos_example.dart';
+import 'package:mobx_example/Json%20Serialization%20Of%20Stores/json_serialization_of_stores_example.dart';
+import 'package:mobx_example/Random%20Stream/random_stream_example.dart';
 import 'package:mobx_example/Todos%20Example/todo_list.dart';
 import 'package:mobx_example/Todos%20Example/todos_example.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +54,8 @@ class MyApp extends StatelessWidget {
           '/ConnectivityExample': (context) => ConnectivityExample(),
           '/GitHubReposExample': (context) => GitHubReposExample(),
           '/HackerNewsExample': (context) => HackerNewsExample(),
+          '/RandomStreamExample': (context) => RandomStreamExample(),
+          '/JsonSerializationOfStoresExample': (context) => JsonSerializationOfStoresExample(),
         },
       ),
     );
@@ -95,6 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 pathName: '/GitHubReposExample', text: 'GitHub Repos Example'),
             CustomElevatedButton(
                 pathName: '/HackerNewsExample', text: 'Hacker News Example'),
+            CustomElevatedButton(
+                pathName: '/RandomStreamExample', text: 'Random Stream Example'),
+            CustomElevatedButton(
+              pathName: '/JsonSerializationOfStoresExample', text: 'Json Serialization Of Stores Example'),
           ],
         ),
       ),

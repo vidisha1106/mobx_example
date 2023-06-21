@@ -1,5 +1,7 @@
+
 class Post
 {
+
   final int userId;
   final int id;
   final String title;
