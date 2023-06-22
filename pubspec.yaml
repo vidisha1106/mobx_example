@@ -42,6 +42,7 @@ dependencies:
   github: ^9.14.0
   json_annotation: ^4.0.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,6 +55,8 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner:
   mobx_codegen:
+  json_serializable: ^6.7.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
