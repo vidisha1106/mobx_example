@@ -8,7 +8,7 @@ class TodosExample extends StatelessWidget {
 
   // final todolist = TodoList();
   final textController = TextEditingController(text: '');
-  FocusNode textFocus = FocusNode();
+  final FocusNode textFocus = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class TodosExample extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Todos Example", style: TextStyle(fontSize: 25)),
+        title: const Text("Todos Example", style: TextStyle(fontSize: 25)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -63,7 +63,7 @@ class TodosExample extends StatelessWidget {
               focusNode: textFocus,
               textInputAction: TextInputAction.done,
               autofocus: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Add a Todo", contentPadding: EdgeInsets.all(16)),
             )
           ],

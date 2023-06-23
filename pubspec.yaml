@@ -41,6 +41,7 @@ dependencies:
   connectivity_plus: ^4.0.1
   github: ^9.14.0
   json_annotation: ^4.0.1
+  http:
 
 
 dev_dependencies:

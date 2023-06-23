@@ -5,9 +5,10 @@ import 'package:mobx_example/API%20Using%20MobX/api_model.dart';
 import 'package:mobx_example/API%20Using%20MobX/api_store.dart';
 
 class HackerNewsExample extends StatelessWidget {
-  ApiStore apiStore = ApiStore();
 
-  HackerNewsExample() {
+  final ApiStore apiStore = ApiStore();
+
+  HackerNewsExample({super.key}) {
     apiStore.getData();
   }
 
@@ -26,14 +27,14 @@ class HackerNewsExample extends StatelessWidget {
         builder: (_) {
           switch (futureList!.status) {
             case FutureStatus.pending:
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             case FutureStatus.rejected:
               return Center(
                 child: Column(
                   children: [
-                    Text(
+                    const Text(
                       "Failed to load items ",
                       style: TextStyle(
                         fontSize: 25,
@@ -41,12 +42,12 @@ class HackerNewsExample extends StatelessWidget {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     FilledButton(
                         onPressed: _refresh,
-                        child: Text(
+                        child: const Text(
                           "Tap to Retry",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ))
@@ -54,28 +55,28 @@ class HackerNewsExample extends StatelessWidget {
                 ),
               );
             case FutureStatus.fulfilled:
-              final List<Post> posts = futureList!.result;
-              print(posts);
+              final List<Post> posts = futureList.result;
+              debugPrint(posts.toString());
               return RefreshIndicator(
                   onRefresh: _refresh,
                   child: ListView.builder(
-                    physics: AlwaysScrollableScrollPhysics(),
+                    physics: const AlwaysScrollableScrollPhysics(),
                     itemCount: posts.length,
                     itemBuilder: (context, index) {
                       final post = posts[index];
                       return ListTile(
                         title: Text(post.title,maxLines: 2,overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.purple)),
                         style: ListTileStyle.list,
                         subtitle: Text(post.body,overflow: TextOverflow.ellipsis,maxLines: 3,
-                          style: TextStyle(
+                          style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
                         ),),
-                        contentPadding: EdgeInsets.all(8),
+                        contentPadding: const EdgeInsets.all(8),
                         leading: CircleAvatar(child: Text("${post.id}",),
                       ),);
                     },

@@ -5,13 +5,13 @@ import 'package:mobx_example/Form%20Example/form.dart';
 class FormExample extends StatelessWidget {
   FormExample({Key? key}) : super(key: key);
 
-  FocusNode userFocus = FocusNode();
-  FocusNode emailFocus = FocusNode();
-  FocusNode passFocus = FocusNode();
-  FocusNode submit = FocusNode();
-  TextEditingController userController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  final FocusNode userFocus = FocusNode();
+  final FocusNode emailFocus = FocusNode();
+  final FocusNode passFocus = FocusNode();
+  final FocusNode submit = FocusNode();
+  final TextEditingController userController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
   final FormStore formStore = FormStore();
 
   @override
@@ -19,14 +19,14 @@ class FormExample extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Form Example", style: TextStyle(fontSize: 25)),
+        title: const Text("Form Example", style: TextStyle(fontSize: 25)),
         centerTitle: true,
       ),
       body: Observer(
         builder: (_) {
           return Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               Padding(
@@ -36,20 +36,20 @@ class FormExample extends StatelessWidget {
                     FocusScope.of(context).requestFocus(emailFocus);
                   },
                   focusNode: userFocus,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                   textInputAction: TextInputAction.next,
                   autofocus: true,
                   keyboardType: TextInputType.name,
                   controller: userController,
                   decoration: InputDecoration(
                     errorText: formStore.usernameError,
-                    errorBorder: UnderlineInputBorder(
+                    errorBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.red, width: 2)),
-                    contentPadding: EdgeInsets.all(10),
+                    contentPadding: const EdgeInsets.all(10),
                     hintText: "UserName",
-                    hintStyle: TextStyle(fontSize: 20),
+                    hintStyle: const TextStyle(fontSize: 20),
                     isDense: true,
-                    border: UnderlineInputBorder(
+                    border: const UnderlineInputBorder(
                         borderSide: BorderSide(
                             width: 1,
                             color: Colors.grey,
@@ -67,16 +67,16 @@ class FormExample extends StatelessWidget {
                 child: TextField(
                   focusNode: emailFocus,
                   keyboardType: TextInputType.emailAddress,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                   textInputAction: TextInputAction.next,
                   controller: emailController,
                   decoration: InputDecoration(
                     errorText: formStore.emailError,
-                    contentPadding: EdgeInsets.all(10),
+                    contentPadding: const EdgeInsets.all(10),
                     hintText: "Email",
-                    hintStyle: TextStyle(fontSize: 20),
+                    hintStyle: const TextStyle(fontSize: 20),
                     isDense: true,
-                    border: UnderlineInputBorder(
+                    border: const UnderlineInputBorder(
                         borderSide: BorderSide(
                             width: 1,
                             color: Colors.grey,
@@ -97,14 +97,14 @@ class FormExample extends StatelessWidget {
                   obscureText: true,
                   textInputAction: TextInputAction.done,
                   controller: passController,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                   decoration: InputDecoration(
                     errorText: formStore.passError,
-                    contentPadding: EdgeInsets.all(10),
+                    contentPadding: const EdgeInsets.all(10),
                     hintText: "Password",
-                    hintStyle: TextStyle(fontSize: 20),
+                    hintStyle: const TextStyle(fontSize: 20),
                     isDense: true,
-                    border: UnderlineInputBorder(
+                    border: const UnderlineInputBorder(
                         borderSide: BorderSide(
                             width: 1,
                             color: Colors.grey,
@@ -117,7 +117,7 @@ class FormExample extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               ElevatedButton(
@@ -133,7 +133,7 @@ class FormExample extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
-                          return AlertDialog(
+                          return const AlertDialog(
                             shape: BeveledRectangleBorder(),
                             icon: Icon(Icons.done,
                                 color: Colors.purple, size: 25),

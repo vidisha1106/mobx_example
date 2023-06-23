@@ -4,7 +4,7 @@ import 'package:mobx_example/Dice%20Example/dice.dart';
 import 'package:provider/provider.dart';
 
 class DiceExample extends StatelessWidget {
-  DiceExample({Key? key}) : super(key: key);
+  const DiceExample({Key? key}) : super(key: key);
 
   // final Dice dice = Dice();
 
@@ -14,18 +14,18 @@ class DiceExample extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Dice Example", style: TextStyle(fontSize: 25)),
+        title: const Text("Dice Example", style: TextStyle(fontSize: 25)),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               "Tap the Dice",
               style: TextStyle(fontSize: 25),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Row(
@@ -54,10 +54,10 @@ class DiceExample extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
-            Text(
+            const Text(
               "Total",
               style: TextStyle(fontSize: 25),
             ),
@@ -65,7 +65,7 @@ class DiceExample extends StatelessWidget {
               builder: (_) {
                 return  Text(
                   dice.total.toString(),
-                  style: TextStyle(fontSize: 50),
+                  style: const TextStyle(fontSize: 50),
                 );
               },
             )

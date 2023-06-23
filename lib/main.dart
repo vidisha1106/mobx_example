@@ -46,15 +46,15 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/MyHomePage',
         routes: {
-          '/MyHomePage': (context) => MyHomePage(),
-          '/CountExample': (context) => CountExample(),
-          '/DiceExample': (context) => DiceExample(),
+          '/MyHomePage': (context) => const MyHomePage(),
+          '/CountExample': (context) => const CountExample(),
+          '/DiceExample': (context) => const DiceExample(),
           '/TodosExample': (context) => TodosExample(),
           '/FormExample': (context) => FormExample(),
           '/ConnectivityExample': (context) => ConnectivityExample(),
           '/GitHubReposExample': (context) => GitHubReposExample(),
           '/HackerNewsExample': (context) => HackerNewsExample(),
-          '/RandomStreamExample': (context) => RandomStreamExample(),
+          '/RandomStreamExample': (context) => const RandomStreamExample(),
           '/JsonSerializationOfStoresExample': (context) => JsonSerializationOfStoresExample(),
         },
       ),
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -78,10 +78,10 @@ class _MyHomePageState extends State<MyHomePage> {
             .of(context)
             .colorScheme
             .inversePrimary,
-        title: Text("MobX", style: TextStyle(fontSize: 25)),
+        title: const Text("MobX", style: TextStyle(fontSize: 25)),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -128,7 +128,7 @@ class CustomElevatedButton extends StatelessWidget {
         onPressed: () {
           Navigator.pushNamed(context, pathName);
         },
-        child: Text(text, style: TextStyle(fontSize: 20)),
+        child: Text(text, style: const TextStyle(fontSize: 20)),
       ),
     );
   }

@@ -34,7 +34,7 @@ class UserInput extends StatelessWidget {
   UserInput(this.store, {Key? key}) : super(key: key);
 
   final GitHubRepos store;
-  TextEditingController textEditingController = TextEditingController();
+  final TextEditingController textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class UserInput extends StatelessWidget {
       child: TextField(
         autofocus: true,
         controller: textEditingController,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 20,
         ),
         onSubmitted: (value) {
@@ -51,7 +51,7 @@ class UserInput extends StatelessWidget {
             store.fetchRepos();
             textEditingController.clear();
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
           suffixIcon: Icon(Icons.search),
           contentPadding: EdgeInsets.all(10),
           hintStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
@@ -129,7 +129,7 @@ class RepositoryListView extends StatelessWidget {
           if (store.repositories.isEmpty) {
             return Column(
               children: [
-                Text(
+                const Text(
                   "We could not find any repos for the user : ",
                   style: TextStyle(
                     fontSize: 20,
@@ -137,7 +137,7 @@ class RepositoryListView extends StatelessWidget {
                 ),
                 Text(
                   store.user,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                       color: Colors.grey, fontWeight: FontWeight.bold),
                 ),
@@ -154,7 +154,7 @@ class RepositoryListView extends StatelessWidget {
                   children: [
                     Text(
                       repo.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.purple,
                           fontSize: 15,
@@ -165,7 +165,7 @@ class RepositoryListView extends StatelessWidget {
                 ),
                 subtitle: Text(repo.description,
                     overflow: TextOverflow.fade,
-                    style: TextStyle(fontSize: 10, color: Colors.purple)),
+                    style: const TextStyle(fontSize: 10, color: Colors.purple)),
               );
             },
           );

@@ -7,7 +7,7 @@ import 'package:mobx_example/Connectivity%20Example/connectivity_store.dart';
 class ConnectivityExample extends StatelessWidget {
   ConnectivityExample({Key? key}) : super(key: key);
 
-  ConnectivityStore connectivityStore = ConnectivityStore();
+ final ConnectivityStore connectivityStore = ConnectivityStore();
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +28,10 @@ class ConnectivityExample extends StatelessWidget {
           child: Scaffold(
             appBar: AppBar(
               title:
-                  Text("Connectivity Example", style: TextStyle(fontSize: 25)),
+                  const Text("Connectivity Example", style: TextStyle(fontSize: 25)),
             ),
-            body: Padding(
-               padding: const EdgeInsets.all(10.0),
+            body: const Padding(
+               padding: EdgeInsets.all(10.0),
               child: Text(
                   'Turn your connection on/off for approximately 3 seconds to see the app respond to changes in your connection status.',
                   style: TextStyle(fontSize: 20)),

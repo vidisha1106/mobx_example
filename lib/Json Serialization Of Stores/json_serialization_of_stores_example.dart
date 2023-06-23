@@ -8,16 +8,15 @@ import 'package:mobx_example/Json%20Serialization%20Of%20Stores/data_model.dart'
 class JsonSerializationOfStoresExample extends StatelessWidget {
   JsonSerializationOfStoresExample({super.key});
 
-  DataModel dataModelObject =
+  final DataModel dataModelObject =
       DataModel(userId: "001", id: '1', title: 'Flutter', body: 'Hello World');
-  String jsonObject =
+  final String jsonObject =
       '{"userId": "001", "id": "1", "title": "Flutter", "body": "Dart"}';
 
-  List<DataModel> listOfDataModelObject = [
+ final List<DataModel> listOfDataModelObject = [
     DataModel(userId: "001", id: '1', title: 'Flutter', body: 'Hello World'),
     DataModel(userId: "002", id: '2', title: 'Dart', body: 'Hello......')
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -30,26 +29,37 @@ class JsonSerializationOfStoresExample extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ///Json Serialization
             ElevatedButton(
                 onPressed: () {
                   Map<String, dynamic> dataModelMap = dataModelObject.toMap();
-                  var json = jsonEncode(dataModelMap);
-                  print(json);
+                  String json = jsonEncode(dataModelMap);
+                  debugPrint(json);
+
+                  //You don’t need to call the toJson() method, since jsonEncode() already does it for you.
+                  String trial=jsonEncode(dataModelObject);
+                  debugPrint(trial);
 
                   ///another way of serializing data to Json
-                  String jsonData=jsonEncode(listOfDataModelObject.map((e) => e.toMap()).toList());
-                  print(jsonData.toString());
+                  String jsonSData = jsonEncode(
+                      listOfDataModelObject.map((e) => e.toMap()).toList());
+                  debugPrint(jsonSData.toString());
 
+                  ///Using @JsonSerializable
+                  String objectToJson = jsonEncode(dataModelObject.toJson());
+                  debugPrint(objectToJson);
                 },
-                child: Text(
+                child: const Text(
                   "Serialize",
                   style: TextStyle(fontSize: 20),
                 )),
-            SizedBox(width: 25),
+
+            const SizedBox(
+              height: 25,
+            ),
 
             ///Json De-Serialization
             ElevatedButton(
@@ -57,10 +67,24 @@ class JsonSerializationOfStoresExample extends StatelessWidget {
                 var decoded = jsonDecode(jsonObject);
                 Map<String, dynamic> dataMap = decoded;
                 DataModel newData = DataModel.fromMap(dataMap);
-                print(newData.body);
+                debugPrint(newData.id);
+                debugPrint(newData.userId);
+                debugPrint(newData.title);
+                debugPrint(newData.body);
+
+                ///Using @JsonSerializable
+                final jsonMap = jsonDecode(jsonObject);
+                final jsonDSData = DataModel.fromJson(jsonMap);
+                debugPrint(jsonDSData.id);
+                debugPrint(jsonDSData.userId);
+                debugPrint(jsonDSData.title);
+                debugPrint(jsonDSData.body);
+
               },
-              child: Text("De-Serialize", style: TextStyle(fontSize: 20)),
-            )
+              child:
+                  const Text("De-Serialize", style: TextStyle(fontSize: 20)),
+            ),
+
           ],
         ),
       ),

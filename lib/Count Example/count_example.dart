@@ -19,7 +19,7 @@ class _CountExampleState extends State<CountExample> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text("Count Example", style: TextStyle(fontSize: 25)),
+        title: const Text("Count Example", style: TextStyle(fontSize: 25)),
         centerTitle: true,
       ),
       body: Center(
@@ -31,7 +31,7 @@ class _CountExampleState extends State<CountExample> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Increment",
                     style: TextStyle(fontSize: 20),
                   ),
@@ -40,7 +40,7 @@ class _CountExampleState extends State<CountExample> {
                       autorun((p0) => debugPrint("${counter.count1}"),);
                       return Text(
                         '${counter.count1}',
-                        style: TextStyle(fontSize: 25),
+                        style: const TextStyle(fontSize: 25),
                       );
                     },
                   )
@@ -52,7 +52,7 @@ class _CountExampleState extends State<CountExample> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Decrement",
                     style: TextStyle(fontSize: 20),
                   ),
@@ -60,7 +60,7 @@ class _CountExampleState extends State<CountExample> {
                     builder: (_) {
                       return Text(
                         '${counter.count2}',
-                        style: TextStyle(fontSize: 25),
+                        style: const TextStyle(fontSize: 25),
                       );
                     },
                   )
@@ -72,7 +72,7 @@ class _CountExampleState extends State<CountExample> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Total",
                     style: TextStyle(fontSize: 20),
                   ),
@@ -80,7 +80,7 @@ class _CountExampleState extends State<CountExample> {
                     builder: (_) {
                       return Text(
                         '${counter.total}',
-                        style: TextStyle(fontSize: 25),
+                        style: const TextStyle(fontSize: 25),
                       );
                     },
                   )
@@ -97,13 +97,13 @@ class _CountExampleState extends State<CountExample> {
             key: UniqueKey(),
             //onPressed: () => counter.count1++,
             onPressed: counter.increment,
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
-          SizedBox(width: 25),
+          const SizedBox(width: 25),
           FloatingActionButton(
             key: UniqueKey(),
             onPressed: counter.decrement,
-            child: Icon(Icons.remove),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),

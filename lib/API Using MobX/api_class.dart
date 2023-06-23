@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+
 import 'api_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,13 +19,13 @@ class PostApi
       }
       else
       {
-        print("failed to fetch data from Api");
+        debugPrint("failed to fetch data from Api");
         return [];
       }
     }
     catch(e)
     {
-      print("Error while fetching data from Api : $e");
+      debugPrint("Error while fetching data from Api : $e");
       return [];
     }
   }

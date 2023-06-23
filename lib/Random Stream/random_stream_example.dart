@@ -4,7 +4,7 @@ import 'package:mobx/mobx.dart';
 import 'package:mobx_example/Random%20Stream/random_stream_store.dart';
 
 class RandomStreamExample extends StatefulWidget {
-  RandomStreamExample({super.key});
+  const RandomStreamExample({super.key});
 
   @override
   State<RandomStreamExample> createState() => _RandomStreamExampleState();
@@ -17,17 +17,17 @@ class _RandomStreamExampleState extends State<RandomStreamExample> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Random Stream Example", style: TextStyle(fontSize: 25)),
+        title: const Text("Random Stream Example", style: TextStyle(fontSize: 25)),
       ),
       body: Center(
         child: Observer(
           builder: (_) {
             autorun((_) {
-              print(randomStreamStore.randomStream!.value);
+              debugPrint(randomStreamStore.randomStream!.value.toString());
             },);
             return Text("${randomStreamStore.randomStream!.value}",
                 style:
-                TextStyle(color: Colors.purple, fontWeight: FontWeight.bold,fontSize: 50));
+                const TextStyle(color: Colors.purple, fontWeight: FontWeight.bold,fontSize: 50));
           },
         ),
       ),
